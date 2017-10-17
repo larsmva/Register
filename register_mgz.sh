@@ -41,10 +41,6 @@ mkdir -p $SCRATCH/CONFORM
 
 list=$( find $SCRATCH -type f | grep "MGZ/T1_3D" | sort)
 
-for i  in ${list}; do 
-       ${FREESURFER_HOME}/bin/mri_convert --conform -odt float $i $SCRATCH/CONFORM/$(basename $i)
-done  
-
 ${FREESURFER_HOME}/bin/mri_robust_template --mov ${list} --average 1 --template $SCRATCH/REGISTERED/template.mgz --satit --inittp 1 --fixtp --noit --maxit 10 --subsample 200 
 for i in ${list}; do 
 	fname=$(basename $i) 
